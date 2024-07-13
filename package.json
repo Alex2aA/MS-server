@@ -4,7 +4,8 @@
   "description": "This is the server side of the application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/Alex2aA/MS-server/issues"
   },
-  "homepage": "https://github.com/Alex2aA/MS-server#readme"
+  "homepage": "https://github.com/Alex2aA/MS-server#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "keywords": []
 }
