@@ -1,2 +1,5 @@
 #ignore dev tools node
 /node_modules/
+
+#ignore db folder
+/db/
