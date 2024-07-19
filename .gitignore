@@ -3,3 +3,6 @@
 
 #ignore db folder
 /db/
+
+#ignore users_data folder
+/users_data/
