@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const { validationResult } = require('express-validator')
 const userService = require('../service/user-service.js')
 
+
 class usersController {
     
     //user-service login(email, password)
@@ -51,11 +52,10 @@ class usersController {
         }
     }
 
-    //user-service activate(activationLink)
+    //user-service activate(userId)
     async activate(req,res) {
         try {
-            const activationLink = req.params.link
-            const resultReq = await userService.activate(activationLink)
+            const resultReq = await userService.activate(req.user.id)
             return res.status(resultReq.status).json(resultReq)
         } catch (error) {
             console.log(error)
@@ -67,9 +67,19 @@ class usersController {
     async getUsers(req,res) {
         try {
             const resultReq = await userService.getUsers()
-            return res.status(resultReq.status).json(resultReq)
+            return res.status(resultReq.status).json({resultReq, user: req.user})
         } catch (error) {
             return res.status(500).json({message: 'Something went wrong'})
+        }
+    }
+
+    async saveAvatar(req, res) {
+        try {
+            const resultReq = await userService.saveAvatar(req.user.id, req.files.avatar)
+            return res.status(resultReq.status).json(resultReq.message)
+        } catch (error) {
+            console.log(error)
+            return res.status(500)
         }
     }
 }
