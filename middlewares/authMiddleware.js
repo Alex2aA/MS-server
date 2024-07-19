@@ -13,7 +13,7 @@ module.exports = function (req,res,next) {
             return res.status(userData.status).json({message: userData.message})
         }
 
-        req.user = userData
+        req.user = jwt.decode(userData.accessToken.accessToken, jwt_access_secret)
         next()
     } catch (error) {
         console.log(error)
