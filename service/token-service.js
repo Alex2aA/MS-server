@@ -9,7 +9,7 @@ class TokenService {
             return {
                 status: 200,
                 accessToken: jwt.sign(payload, jwt_access_secret, {expiresIn:'15s'}),
-                refreshToken: jwt.sign(payload, jwt_refresh_secret, {expiresIn:'30m'}),
+                refreshToken: jwt.sign(payload, jwt_refresh_secret, {expiresIn:'24h'}),
                 message: 'Tokens successfully created'
             }
         }
