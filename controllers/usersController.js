@@ -39,9 +39,8 @@ class usersController {
 
             const result = validationResult(req)
             if(!result.isEmpty()) {
-                const error = result.errors[0]
                 console.log(result)
-                return res.status(400).json(error)
+                return res.status(400).json({status: 400, error: result.errors})
             }
 
             const resultReq = await userService.registration(username,password,email)
@@ -67,7 +66,7 @@ class usersController {
     async getUsers(req,res) {
         try {
             const resultReq = await userService.getUsers()
-            return res.status(resultReq.status).json({resultReq, user: req.user})
+            return res.status(resultReq.status).json(resultReq)
         } catch (error) {
             return res.status(500).json({message: 'Something went wrong'})
         }

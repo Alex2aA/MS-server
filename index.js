@@ -5,10 +5,17 @@ const fileUploader = require('express-fileupload')
 const fs = require('fs')
 
 const express = require('express')
+const cors = require('cors')
+
+let corsOptions = {
+    origin: '*',
+    optionSuccessStatus: 200
+}
 
 const PORT = 8080
 
 const app = express()
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use(fileUploader())
 

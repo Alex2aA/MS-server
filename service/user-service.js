@@ -12,7 +12,12 @@ class UserService {
 
     //test function to check middleware works
     async getUsers() {
-        let data = await pool.query('SELECT * FROM users')
+        let data = await pool.query('SELECT username, avatar FROM users')
+        for (const user of data.rows) {
+            if(user.avatar) {
+                user.avatar = btoa(fs.readFileSync(user.avatar).data)
+            }
+        }
         return { status: 200, users: data.rows}
     }
    
@@ -62,7 +67,7 @@ class UserService {
             return {
                 status: 200,
                 message: ('You have successfully registered'),
-                tokens: token
+                token
             }
     }
 
